@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E54AD9102C440A4800892378 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = E54AD90F2C440A4800892378 /* main.c */; };
+		E54AD91A2C44667100892378 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = E54AD9192C44667100892378 /* main.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +24,10 @@
 
 /* Begin PBXFileReference section */
 		E54AD90C2C440A4800892378 /* GDC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GDC; sourceTree = BUILT_PRODUCTS_DIR; };
-		E54AD90F2C440A4800892378 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		E54AD9172C440AC000892378 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		E54AD9182C440B0700892378 /* trigger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = trigger.h; sourceTree = "<group>"; };
+		E54AD9192C44667100892378 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; usesTabs = 0; };
+		E54AD91B2C44677C00892378 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +44,8 @@
 		E54AD9032C440A4800892378 = {
 			isa = PBXGroup;
 			children = (
-				E54AD90E2C440A4800892378 /* GDC */,
+				E54AD91B2C44677C00892378 /* .gitignore */,
+				E54AD9162C440A9900892378 /* src */,
 				E54AD90D2C440A4800892378 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,12 +58,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E54AD90E2C440A4800892378 /* GDC */ = {
+		E54AD9162C440A9900892378 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				E54AD90F2C440A4800892378 /* main.c */,
+				E54AD9172C440AC000892378 /* common.h */,
+				E54AD9182C440B0700892378 /* trigger.h */,
+				E54AD9192C44667100892378 /* main.c */,
 			);
-			path = GDC;
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,7 +125,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E54AD9102C440A4800892378 /* main.c in Sources */,
+				E54AD91A2C44667100892378 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
