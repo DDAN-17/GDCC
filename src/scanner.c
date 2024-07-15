@@ -15,6 +15,7 @@ void initScanner(char* source) {
 	scanner.line = 1;
 }
 
-char* nextToken() {
-	
+Token nextToken() {
+	Token token = {TOKEN_IDENTIFIER, "initScanner 1234r43ujgydsjhcaugyg", 13, 1};
+	return token;
 }
