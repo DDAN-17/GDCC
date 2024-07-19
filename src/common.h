@@ -1,5 +1,11 @@
 #ifndef common_h
 #define common_h
+
+#define en_US 0
+
+#define DEBUG 0
+#define RELEASE 1
+
 #include "config.h"
 
 #include <stddef.h>
@@ -11,4 +17,4 @@
 
 #include "ansi.h"
 
-#endif /* common_h */
+#endif
