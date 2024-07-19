@@ -28,5 +28,6 @@ typedef struct {
 void initScanner(char* source);
 
 Token nextToken();
+bool scannerHasNextToken();
 
 #endif

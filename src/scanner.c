@@ -1,5 +1,8 @@
 #include "common.h"
 #include "scanner.h"
+#include "localization.h"
+
+void error(char*);
 
 typedef struct {
 	const char* start;
@@ -42,6 +45,18 @@ char advance() {
 	return scanner.current[-1];
 }
 
+char peek() {
+	return *scanner.current;
+}
+
+char match(char c) {
+	if (peek() == c) {
+		advance();
+		return true;
+	}
+	return false;
+}
+
 Token nextToken() {
 	scanner.start = scanner.current;
 
@@ -57,7 +72,46 @@ Token nextToken() {
     	case ';': return makeToken(TOKEN_SEMICOLON);
     	case ',': return makeToken(TOKEN_COMMA);
     	case '.': return makeToken(TOKEN_DOT);
+    	case '+': 
+    		if (match('+')) {
+    			return makeToken(TOKEN_PLUS_PLUS);
+    		} else if (match('=')) {
+    			return makeToken(TOKEN_PLUS_EQUAL);
+    		} else {
+    			return makeToken(TOKEN_PLUS);
+    		}
+    	case '-': 
+    		if (match('-')) {
+    			return makeToken(TOKEN_MINUS_MINUS);
+    		} else if (match('=')) {
+    			return makeToken(TOKEN_MINUS_EQUAL);
+    		} else {
+    			return makeToken(TOKEN_MINUS);
+    		}
+    	case '*': 
+    		if (match('=')) {
+    			return makeToken(TOKEN_STAR_EQUAL);
+    		} else {
+    			return makeToken(TOKEN_STAR);
+    		}
+    	case '/': 
+    		if (match('=')) {
+    			return makeToken(TOKEN_SLASH_EQUAL);
+    		} else {
+    			return makeToken(TOKEN_SLASH);
+    		}
+    	case '&':
+    		if (match('&')) {
+    			return makeToken(TOKEN_AND);
+    		} else {
+    			error(BITWISE_NOT_ALLOWED);
+    		}
   	}
 
-  	return errorToken("Unexpected character.");
+  	error(UNEXPECTED_CHAR);
+  	return makeToken(TOKEN_EOF); // Unreachable
+}
+
+bool scannerHasNextToken() {
+	return !isAtEnd();
 }
