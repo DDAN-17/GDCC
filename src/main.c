@@ -2,6 +2,7 @@
 #include "scanner.h"
 #include "localization.h"
 #include "parser.h"
+#include "table.h"
 
 char* tokenVal(Token t);
 void error(char* message);

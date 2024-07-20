@@ -2,8 +2,9 @@
 #define trigger_h
 
 #include "common.h"
+#include "array.h"
 
-#include "array.c"
+#define DYN_ARRAY_INIT_CAP_TRIG 8
 
 typedef enum {
     ALPHA
@@ -30,6 +31,8 @@ typedef struct {
     Trigger* triggers;
 } TriggerArray;
 
-void initTriggerArray(TriggerArray array);
+void initTriggerArray(TriggerArray* array);
+void writeTriggerArray(TriggerArray* array, Trigger value);
+void freeTriggerArray(TriggerArray* array);
 
 #endif
