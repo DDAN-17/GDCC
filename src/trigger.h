@@ -3,24 +3,33 @@
 
 #include "common.h"
 
-typedef struct {
-    TriggerType type,
-    IntArray groups,
-    boolean touchTriggerOrMulti, // Works as both touch trigger option and multi activate option.
-    boolean spawnTrigger,
-    union {
-        Alpha
-    } as
-} Trigger ;
+#include "array.c"
 
 typedef enum {
     ALPHA
-} TriggerType ;
+} TriggerType;
 
 typedef struct {
-    int targetGroup,
-    float opacity
-} Alpha ;
+    int targetGroup;
+    float opacity;
+} Alpha;
 
+typedef struct {
+    TriggerType type;
+    IntArray groups;
+    bool touchTriggerOrMulti; // Works as both touch trigger option and multi activate option.
+    bool spawnTrigger;
+    union {
+        Alpha alpha;
+    } as;
+} Trigger;
 
-#endif /* trigger_h */
+typedef struct {
+    int capacity;
+    int size;
+    Trigger* triggers;
+} TriggerArray;
+
+void initTriggerArray(TriggerArray array);
+
+#endif

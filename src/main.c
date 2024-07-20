@@ -1,6 +1,7 @@
 #include "common.h"
 #include "scanner.h"
 #include "localization.h"
+#include "parser.h"
 
 char* tokenVal(Token t);
 void error(char* message);
@@ -25,6 +26,8 @@ int main(int argc, char** argv) {
     }
     exit(0);
     #endif
+
+    startParser();
 }
 
 char* readFile(const char* path) {

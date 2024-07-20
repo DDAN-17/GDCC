@@ -3,7 +3,6 @@
 
 #define LOCALE en_US
 
-#define BUILD_MODE DEBUG
-#define TOKENS_OUT
+#define BUILD_MODE RELEASE
 
 #endif
