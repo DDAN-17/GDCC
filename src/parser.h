@@ -3,6 +3,6 @@
 
 #include "trigger.h"
 
-TriggerArray startParser();
+TriggerArray* startParser();
 
 #endif

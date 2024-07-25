@@ -4,7 +4,6 @@
 #include "parser.h"
 #include "table.h"
 
-char* tokenVal(Token t);
 void error(char* message);
 void warning(char* message);
 
@@ -44,13 +43,6 @@ char* readFile(const char* path) {
 
   fclose(file);
   return buffer;
-}
-
-char* tokenVal(Token t) {
-    char* string = malloc(strlen(t.start));
-    strcpy(string, t.start);
-    string[t.length] = '\0';
-    return string;
 }
 
 void error(char* message) {

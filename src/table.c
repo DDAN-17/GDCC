@@ -22,13 +22,14 @@ uint32_t hash(char* key) {
 }
 
 Entry* findEntry(Table* table, char* key) {
-	int index = (int) hash(key) % table->capacity;
+	int index = (int) (hash(key) % table->capacity);
 	Entry* entry = &table->entries[index];
 	while (!(entry->key == NULL || strcmp(entry->key, key) == 0)) {
 		index += 1;
 		index %= table->capacity;
 		entry = &table->entries[index];
 	}
+	printf("%d\n", index);
 	return entry;
 }
 

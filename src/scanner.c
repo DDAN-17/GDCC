@@ -19,6 +19,16 @@ void initScanner(char* source) {
 	scanner.line = 1;
 }
 
+char* tokenVal(Token* t) {
+		if (t->type == TOKEN_EOF) {
+			return " ";
+		}
+    char* string = malloc(strlen(t->start));
+    strcpy(string, t->start);
+    string[t->length] = '\0';
+    return string;
+}
+
 Token makeToken(TokenType tokenType) {
 	Token token;
 	token.type = tokenType;
@@ -28,7 +38,14 @@ Token makeToken(TokenType tokenType) {
 	return token;
 }
 
+bool isAtEnd() {
+  return *scanner.start == '\0';
+}
+
 char advance() {
+	if (isAtEnd()) {
+		return '\0';
+	}
 	scanner.current++;
 	return scanner.current[-1];
 }
@@ -49,20 +66,16 @@ char match(char c) {
 	return false;
 }
 
-bool isAtEnd() {
-  return *scanner.start == '\0';
-}
-
 void targetedError(char* msgIn, char loc) {
 	char* msg;
-    asprintf(&msg, "%s, line %d, at %c", msgIn, scanner.line, loc);
-    error(msg);
+  asprintf(&msg, "%s, line %d, at %c", msgIn, scanner.line, loc);
+  error(msg);
 }
 
 void targetedErrorL(char* msgIn, char* loc) {
 	char* msg;
-    asprintf(&msg, "%s, line %d, at %s", msgIn, scanner.line, loc);
-    error(msg);
+  asprintf(&msg, "%s, line %d, at %s", msgIn, scanner.line, loc);
+  error(msg);
 }
 
 bool isAlpha(char c) {
@@ -216,7 +229,6 @@ Token nextToken() {
 	scanner.start = scanner.current;
 	if (isAtEnd()) return makeToken(TOKEN_EOF);
 	Token t = nextTokenWrap();
-	if (isAtEnd()) return makeToken(TOKEN_EOF);
 	return t;
 }
 

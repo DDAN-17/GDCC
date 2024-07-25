@@ -3,6 +3,7 @@
 
 #define DYN_ARRAY_INIT_CAP_INT 1
 #define DYN_ARRAY_INIT_CAP_BOL 16
+#define DYN_ARRAY_INIT_CAP_STR 8
 
 typedef struct {
 	int size;
@@ -22,5 +23,15 @@ typedef struct {
 void initBoolArray(BoolArray* array);
 void writeBoolArray(BoolArray* array, int index, bool value);
 void freeBoolArray(BoolArray* array);
+
+typedef struct {
+	int size;
+	int capacity;
+	char** strings;
+} StringArray;
+
+void initStringArray(StringArray* array);
+int writeStringArray(StringArray* array, char* value);
+void freeStringArray(StringArray* array);
 
 #endif

@@ -13,6 +13,7 @@
 #define BITWISE_NOT_ALLOWED_MSG "Bitwise operations are not allowed"
 #define UNEXPECTED_CHAR_MSG "Unexpected character"
 #define FILE_NOT_FOUND_MSG "File not found"
+#define INTERNAL_ERROR_MSG "Internal Error"
 #undef LOCALE
 #endif
 

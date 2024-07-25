@@ -19,4 +19,7 @@
 
 char* concat(char *s1, char *s2);
 
+void error(char* msg);
+void warning(char* msg);
+
 #endif

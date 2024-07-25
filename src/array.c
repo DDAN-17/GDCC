@@ -21,7 +21,26 @@ void freeIntArray(IntArray* array) {
 	free(array);
 }
 
+void initStringArray(StringArray* array) {
+	array->size = 0;
+	array->capacity = DYN_ARRAY_INIT_CAP_STR;
+	array->strings = (char**) malloc(DYN_ARRAY_INIT_CAP_STR * sizeof(char*));
+}
 
+int writeStringArray(StringArray* array, char* value) {
+	if (array->size + 1 == array->capacity) {
+		int oldCap = array->capacity;
+		array->strings = realloc(array->strings, oldCap * sizeof(int) * 2);
+		array->capacity = oldCap * 2;
+	}
+
+	array->strings[array->size++] = value;
+	return array->size - 1;
+}
+void freeStringArray(StringArray* array) {
+	free(array->strings);
+	free(array);
+}
 
 void initBoolArray(BoolArray* array) {
 	array->capacity = DYN_ARRAY_INIT_CAP_BOL;
