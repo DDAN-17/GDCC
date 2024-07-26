@@ -1,7 +1,8 @@
 package org.DDAN.GDC;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class GDC {
 	public static void main(String[] args) {
@@ -9,8 +10,17 @@ public class GDC {
 		if (args.length == 0) {
 			error(Localization.getLocalization("no_input_files"));
 		}
-		if (!Files.exists(Path.of(args[0]))) {
+
+		File file = new File(args[0]);
+		Scanner fileScan = null;
+		try {
+			fileScan = new Scanner(file);
+		} catch (FileNotFoundException e) {
 			error(Localization.getLocalization("file_no_exist"));
+		}
+
+		if (fileScan != null) {
+			CScanner fileScanner = new CScanner(fileScan.toString());
 		}
 	}
 
