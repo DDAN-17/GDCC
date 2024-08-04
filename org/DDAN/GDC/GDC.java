@@ -17,11 +17,20 @@ public class GDC {
 			fileScan = new Scanner(file);
 		} catch (FileNotFoundException e) {
 			error(Localization.getLocalization("file_no_exist"));
+			System.exit(1); // Unreachable
 		}
 
-		if (fileScan != null) {
-			CScanner fileScanner = new CScanner(fileScan.toString());
+		CScanner fileScanner = null;
+		StringBuilder fileString = new StringBuilder();
+		while (fileScan.hasNextLine()) {
+			fileString.append(fileScan.nextLine());
+			if (fileScan.hasNextLine()) {
+				fileString.append("\n");
+			}
 		}
+		fileScanner = new CScanner(fileString.toString());
+
+		Compiler compiler = new Compiler(fileScanner);
 	}
 
 	public static void error(String msg) {

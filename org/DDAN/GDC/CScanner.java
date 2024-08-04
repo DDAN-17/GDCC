@@ -16,8 +16,8 @@ public class CScanner {
 		return file.charAt(current++);
 	}
 
-	boolean match(char t) {
-		if (peek() == t) {
+	boolean match(char c) {
+		if (peek() == c) {
 			advance();
 			return true;
 		}
@@ -25,7 +25,7 @@ public class CScanner {
 	}
 
 	char peek() {
-		return file.charAt(current + 1);
+		return file.charAt(current);
 	}
 
 	Token makeToken(TokenType t) {
@@ -34,8 +34,31 @@ public class CScanner {
 		return token;
 	}
 
+	void skipWhitespace() {
+		char c = peek();
+
+		switch (c) {
+			case ' ':
+			case '\r':
+			case '\t':
+				advance();
+				start = current;
+				skipWhitespace();
+				break;
+			case '\n':
+				advance();
+				start = current;
+				line++;
+				skipWhitespace();
+				break;
+		}
+	}
+
 	Token nextToken() {
+		if (isAtEnd()) return makeToken(EOF);
+		skipWhitespace();
 		char c = advance();
+
 		switch (c) {
 			case '(': return makeToken(LEFT_PAREN);
 			case ')': return makeToken(RIGHT_PAREN);
@@ -109,18 +132,22 @@ public class CScanner {
 					targetedError(Localization.getLocalization("no_bitwise"), c);
 				}
 			default:
-				return makeToken(IDENTIFIER);
+				return identifier();
 		}
 	}
 
+	Token identifier() {
+		return makeToken(IDENTIFIER);
+	}
+
 	boolean isAtEnd() {
-		return file.charAt(current) == '\0';
+		return current == file.length();
 	}
 
 	void targetedError(String msg, char c) {
-		GDC.error(msg + " at character \"" + c + "\"");
+		GDC.error(msg + ": at \"" + c + "\"");
 	}
 	void targetedError(String msg, String c) {
-		GDC.error(msg + " at character \"" + c + "\"");
+		GDC.error(msg + ": at \"" + c + "\"");
 	}
 }
